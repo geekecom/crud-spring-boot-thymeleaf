@@ -1,0 +1,183 @@
+body {
+	text-align: center !important;
+	align-content: center !important;
+	font-family: Arial;
+	margin: 0;
+	background-color: #f5f5f5;
+}
+
+header {
+	background-color: #00af54;
+	margin-bottom: 3em;
+}
+
+header h1 {
+	color: white;
+	padding: 1em;
+	margin: 0;
+}
+
+.body-div {
+	width: 90% !important;
+	margin: auto !important;
+}
+
+.employee-button {
+	display: contents;
+	padding: 0.5em;
+	font-size: 1.5em;
+	color: black;
+}
+
+#add-employee-button {
+	font-size: 1em;
+	text-decoration: none;
+	background-color: #D4EED1;
+	color: #333333;
+	padding: 2px 6px 2px 6px;
+	border-top: 1px solid #CCCCCC;
+	border-right: 1px solid #333333;
+	border-bottom: 1px solid #333333;
+	border-left: 1px solid #CCCCCC;
+	margin-bottom: 3em ;
+	padding: 1em;
+	float: left;
+}
+
+table.employee-table {
+	border: 6px solid #24943A;
+	background-color: #D4EED1 !important;
+	text-align: center;
+	margin: auto;
+}
+
+table.employee-table td, table.employee-table th {
+	border: 1px solid #24943A;
+	padding: 3px 2px;
+}
+
+table.employee-table tbody td {
+	font-size: 1.3em;
+	padding: 1em;
+}
+
+table.employee-table tbody tr:hover {
+	background-color: #c6ffe1 !important;
+}
+
+table.employee-table thead {
+	background-color: #00af54;
+}
+
+table.employee-table thead th {
+	font-size: 19px;
+	font-weight: bold;
+	color: #F0F0F0;
+	border-left: 2px solid #24943A;
+}
+
+table.employee-table thead th:first-child {
+	border-left: none;
+	width: 1px;
+}
+
+table.employee-table tfoot td {
+	font-size: 13px;
+}
+
+table.employee-table tfoot .links {
+	text-align: right;
+}
+
+table.employee-table tfoot .links a {
+	display: inline-block;
+	color: #24943A;
+	padding: 2px 8px;
+	border-radius: 5px;
+}
+
+.employee-table-button-cell {
+	width: 80px;
+}
+
+.employee-details-button {
+	margin-top: 3em;
+	padding: 1em;
+}
+
+.employee-form-button {
+	padding: 1em;
+	margin-left: 1em;
+	margin-right: 1em;
+}
+/* ####################### employee-details-table ##########################*/
+table.employee-details-table {
+	border: 6px solid #24943A;
+	width: 60%;
+	text-align: center;
+	margin: auto;
+}
+
+table.dataTable tbody tr {
+	background-color: #D4EED1 !important;
+}
+
+table.employee-details-table td, table.employee-details-table th {
+	border: 1px solid #24943A;
+	padding: 3px 2px;
+	width: 50%;
+}
+
+table.employee-details-table tbody td {
+	font-size: 1.3em;
+	padding: 1em;
+}
+
+table.employee-details-table thead {
+	background: #24943A;
+	background: -moz-linear-gradient(top, #5baf6b 0%, #3a9e4d 66%, #24943A 100%);
+	background: -webkit-linear-gradient(top, #5baf6b 0%, #3a9e4d 66%, #24943A 100%);
+	background: linear-gradient(to bottom, #5baf6b 0%, #3a9e4d 66%, #24943A 100%);
+	border-bottom: 0px solid #444444;
+}
+
+table.employee-details-table thead th {
+	font-size: 19px;
+	font-weight: bold;
+	color: #F0F0F0;
+	border-left: 2px solid #24943A;
+}
+
+#employee-table_filter {
+	margin-bottom: 1em;
+}
+
+table.employee-details-table tbody tr {
+	background-color: #D4EED1 !important;
+}
+/* ####################### employee-details-table END ##########################*/
+.employee-photo {
+	position: absolute;
+	top: 110px;
+	right: 10px;
+	width: 200px;
+	border-radius: 50%;
+}
+
+footer {
+	margin-top: 2em;
+}
+
+#employee-edit-form input, select {
+	font-size: 1em;
+}
+
+#technology-table {
+	margin: auto;
+}
+
+#technology-table td {
+	border: none;
+	font-size: 0.8em;
+	padding: 0px;
+}

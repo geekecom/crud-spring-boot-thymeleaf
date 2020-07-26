@@ -1,0 +1,58 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title th:replace="fragments :: title"></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/css/rs.css}" />
+<script src="https://kit.fontawesome.com/23a1a9280c.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<div th:insert="fragments :: header"></div>
+
+	<h2>Employee Details</h2>
+
+	<table class="employee-details-table">
+		<tr>
+			<td>Employee ID</td>
+			<td th:text="${employee.id}" />
+		</tr>
+		<tr>
+			<td>First name</td>
+			<td th:text="${employee.name}" />
+		</tr>
+
+		<tr>
+			<td>Last name</td>
+			<td th:text="${employee.lastName}" />
+		</tr>
+
+		<tr>
+			<td>Technologies</td>
+			<td th:text="${employee.technologiesToString()}" />
+		</tr>
+
+		<tr>
+			<td>Office</td>
+			<td th:text="${employee.office.location}" />
+		</tr>
+	</table>
+
+	<img class="employee-photo" alt="Employee photo not found"
+		th:src="${employee.photoToString()}" />
+
+	<button class="employee-details-button"
+		onclick="location.href='/employee'">
+		<i class="fas fa-angle-left"></i>
+		Back
+	</button>
+	<div th:insert="fragments :: footer"></div>
+</body>
+
+</html>

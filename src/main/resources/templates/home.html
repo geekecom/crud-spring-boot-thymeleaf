@@ -1,0 +1,97 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title th:replace="fragments :: title"></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/css/rs.css}" />
+<script src="https://kit.fontawesome.com/23a1a9280c.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+
+<script>
+	$(document).ready(function() {
+		$('#employee-table').dataTable({
+			"lengthMenu" : [ 3, 5, 10 ]
+		});
+	});
+
+	function deleteEmployeeConfirmAlert(employeeId) {
+		if (confirm("Are you sure you want to delete the selected employee?")) {
+			$.get("/employee/delete/" + employeeId, function(fragment) {
+				$("#employee-table").replaceWith(fragment);
+
+				$('#employee-table_length').remove();
+				$('#employee-table_filter').remove();
+				$('#employee-table_info').remove();
+				$('#employee-table_paginate').remove();
+
+				$('#employee-table').dataTable({
+					"lengthMenu" : [ 3, 5, 10 ]
+				});
+			});//th:href="@{'/employee/delete/' + ${employee.id}}"
+		}
+	}
+</script>
+</head>
+
+<body>
+
+	<!-- 	<div id="includedHeader"></div> -->
+	<div th:insert="fragments :: header"></div>
+
+	<div class="body-div">
+
+		<a id="add-employee-button" href="/employee/add">Add Employee</a>
+
+		<table id="employee-table" class="employee-table">
+			<thead>
+				<tr>
+					<th>Employee ID</th>
+					<th>First name</th>
+					<th>Last name</th>
+					<th>Office</th>
+					<th style="width: 1px">Details</th>
+					<th style="width: 1px">Edit</th>
+					<th style="width: 1px">Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="employee : ${allEmployees}">
+					<td th:text="${employee.id}" />
+					<td th:text="${employee.name}" />
+					<td th:text="${employee.lastName}" />
+					<td th:text="${employee.office.location}" />
+					<td style="border: none;" class="employee-table-button-cell">
+						<a class="employee-button"
+							th:href="@{'/employee/view/' + ${employee.id}}">
+							<i class="fas fa-info-circle"></i>
+						</a>
+					</td>
+					<td style="border: none;" class="employee-table-button-cell">
+						<a class="employee-button"
+							th:href="@{'/employee/edit/' + ${employee.id}}">
+							<i class="fas fa-edit"></i>
+						</a>
+					</td>
+					<td style="border: none;" class="employee-table-button-cell">
+						<a class="employee-button" href="#"
+							th:onclick="'javascript:deleteEmployeeConfirmAlert('+ ${employee.id} + ')'">
+							<i class="fas fa-trash-alt"></i>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div th:insert="fragments :: footer"></div>
+</body>
+
+</html>

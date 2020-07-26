@@ -1,0 +1,114 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title th:replace="fragments :: title"></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/css/rs.css}" />
+<script src="https://kit.fontawesome.com/23a1a9280c.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+	
+</script>
+<script type="text/javascript">
+	function processImg() {
+		const preview = document.querySelector('img');
+		const file = document.querySelector('input[type=file]').files[0];
+		const reader = new FileReader();
+
+		reader.addEventListener("load", function() {
+			// convert image file to base64 string
+			preview.src = reader.result;
+			$("#photo").val(reader.result);
+		}, false);
+
+		if (file) {
+			reader.readAsDataURL(file);
+		}
+	}
+</script>
+
+</head>
+
+<body>
+	<div th:insert="fragments :: header"></div>
+
+	<h2>Add Employee</h2>
+
+	<form id="employee-edit-form" action="#" th:action="@{/employee/create}"
+		th:object="${employee}" method="post">
+		<table class="employee-details-table">
+
+			<tr>
+				<td>First name</td>
+				<td>
+					<input th:field="*{name}" />
+				</td>
+			</tr>
+
+			<tr>
+				<td>Last name</td>
+				<td>
+					<input th:field="*{lastName}" />
+				</td>
+			</tr>
+
+			<tr>
+				<td>Technologies</td>
+				<td>
+					<table id="technology-table">
+						<tr th:each="technology : ${allTechnologies}">
+							<td>
+								<label th:text="${technology.name}" th:for="${technology.name}"></label>
+							</td>
+							<td>
+								<input type="checkbox" th:field="*{technologies}"
+									th:value="${technology.name}" th:id="${technology.name}">
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr>
+				<td>Office</td>
+				<td>
+					<select th:field="*{office.location}">
+						<option th:each="officeSelected : ${allOffices}"
+							th:value="${officeSelected.location}"
+							th:text="${officeSelected.location}" />
+					</select>
+				</td>
+			</tr>
+
+			<tr>
+				<td>Photo</td>
+				<td>
+					<input type="file" id="photo-upload" name="photo-upload"
+						onchange="processImg()">
+					<input id="photo" type="hidden" th:field="*{photo}" />
+				</td>
+			</tr>
+		</table>
+		<p>
+			<input class="employee-form-button" type="submit" value="Submit" />
+			<input class="employee-form-button" type="reset" value="Reset" />
+		</p>
+	</form>
+
+
+	<img class="employee-photo" alt="Employee photo not found"
+		th:src="${employee.photoToString()}" />
+
+	<button class="employee-details-button"
+		onclick="location.href='/employee'">
+		<i class="fas fa-angle-left"></i>
+		Back
+	</button>
+	<div th:insert="fragments :: footer"></div>
+</body>
+
+</html>
